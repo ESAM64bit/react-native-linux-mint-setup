@@ -1,103 +1,105 @@
-# React Native Setup Guide on Linux Mint and Ubuntu
+# MyApp
 
-[English](#english) | [العربية](#العربية)
+A mobile app built with [React Native](https://reactnative.dev/) and [Expo](https://expo.dev/).
 
----
+## Requirements
 
-## English
+- [Node.js](https://nodejs.org/) (LTS version)
+- [Git](https://git-scm.com/)
+- A phone with the [Expo Go](https://expo.dev/go) app installed ([Android](https://play.google.com/store/apps/details?id=host.exp.exponent) / [iOS](https://apps.apple.com/app/expo-go/id982107779)), or an Android emulator ([Android Studio](https://developer.android.com/studio))
+- Phone and computer on the same Wi-Fi network
 
-A step-by-step guide to setting up **React Native** on **Linux Mint**, from a clean system to running your first project. Available in English and Arabic, with a ready-to-use shell script.
+## Getting Started
 
-### What's inside
+### 1. Install Node.js (Linux Mint)
 
-| File | Description |
-|------|-------------|
-| `English.pdf` | Full guide in English |
-| `Arabic.pdf` | Full guide in Arabic (الدليل بالعربية) |
-| `code` | All commands from the guide in one file |
-
-### Overview
-
-React Native works fully on Linux Mint for **Android** development. iOS apps require macOS, but you can work around this with **Expo Go** on an iPhone or a cloud build service like **EAS Build**.
-
-1. **Install core requirements**: nvm, Node.js (LTS) and JDK 17, with environment variables added to `~/.bashrc`
-2. **Install Android Studio & Android SDK**: download the `.tar.gz` from the official site, then set `ANDROID_HOME`
-3. **Create your first project**: with Expo (recommended for beginners) or the React Native CLI
-4. **Run the app**: scan the QR code with Expo Go, or use an Android emulator
-
-### Quick start
+Install [nvm](https://github.com/nvm-sh/nvm) (Node Version Manager), then use it to install [Node.js](https://nodejs.org/):
 
 ```bash
-# Step 1: Node.js + JDK 17
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash && \
-source ~/.bashrc && \
-nvm install --lts && \
-sudo apt update && sudo apt install -y openjdk-17-jdk && \
-echo 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64' >> ~/.bashrc && \
-echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bashrc && \
-source ~/.bashrc && \
-node -v && java -version
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+```
 
-# Step 2: after installing Android Studio manually
-echo 'export ANDROID_HOME=$HOME/Android/Sdk' >> ~/.bashrc
-echo 'export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools' >> ~/.bashrc
-source ~/.bashrc
+Close the terminal and open it again, then run:
 
-# Step 3: create a project (Expo, recommended)
-npx create-expo-app MyApp && cd MyApp
+```bash
+nvm install --lts
+node -v
+```
 
-# Step 4: run
+### 2. Clone the repository and install dependencies
+
+```bash
+git clone https://github.com/YOUR_USERNAME/MyApp.git
+cd MyApp
+npm install
+```
+
+### 3. Start the app
+
+```bash
 npx expo start
 ```
 
-> Prefer the React Native CLI? Use `npx @react-native-community/cli init MyApp` in Step 3.
+Scan the QR code in the terminal with **Expo Go** on your phone.
 
-### Tips
+To use the Android emulator instead, press `a` in the terminal (requires Android Studio).
 
-- Use a **real phone** instead of an emulator for much better performance on weaker machines.
-- iOS builds need **macOS & Xcode**, which are not supported on Linux.
-- **Expo** is easier for beginners and doesn't require the full Android Studio setup just to try things out.
-- **EAS Build** lets you build iOS/Android apps in the cloud without a Mac.
+## Creating a New Project from Scratch
 
-### Contributing
+```bash
+npx create-expo-app@latest MyApp
+cd MyApp
+npx expo start
+```
 
-Created by [ESAM64bit](https://github.com/ESAM64bit).
+## Project Structure
 
----
+```
+MyApp/
+├── app/            # Screens and navigation
+├── assets/         # Images and fonts
+├── components/     # Reusable components
+├── package.json    # Dependencies and scripts
+└── README.md
+```
 
-## العربية
+## Available Scripts
 
-دليل مرتب خطوة بخطوة لتثبيت **React Native** على **Linux Mint**، من نظام نظيف حتى تشغيل أول مشروع. متوفر بالعربية والإنجليزية مع ملف يحتوي على الأوامر جاهزة للنسخ.
+| Command | Description |
+|---------|-------------|
+| `npx expo start` | Start the development server |
+| `npm run android` | Open the app on an Android emulator or device |
+| `npm run web` | Run the app in the browser |
+| `npm run lint` | Check the code for issues |
 
-### محتويات المستودع
+## Troubleshooting
 
-| الملف | الوصف |
-|------|-------|
-| `Arabic.pdf` | الدليل الكامل بالعربية |
-| `English.pdf` | الدليل الكامل بالإنجليزية |
-| `code` | جميع أوامر الدليل في ملف واحد |
+- **QR code does not connect:** make sure the phone and computer are on the same Wi-Fi network.
+- **Emulator is slow or does not start:** enable virtualization (KVM) in your BIOS.
+- **Stale cache or strange errors:** run `npx expo start -c` to clear the cache.
 
-### نظرة عامة
+## Useful Links
 
-يعمل React Native بشكل كامل على Linux Mint لتطوير تطبيقات **Android**. أما تطبيقات iOS فتتطلب macOS، ويمكن تجاوز ذلك باستخدام **Expo Go** على الآيفون مباشرة أو خدمة البناء السحابية **EAS Build**.
+| Tool | Official Website |
+|------|------------------|
+| React Native | https://reactnative.dev/ |
+| Expo | https://expo.dev/ |
+| Expo Documentation | https://docs.expo.dev/ |
+| Expo Go | https://expo.dev/go |
+| Node.js | https://nodejs.org/ |
+| nvm | https://github.com/nvm-sh/nvm |
+| Git | https://git-scm.com/ |
+| Android Studio | https://developer.android.com/studio |
+| GitHub | https://github.com/ |
 
-1. **تثبيت المتطلبات الأساسية**: nvm وNode.js (LTS) وJDK 17 مع إضافة متغيرات البيئة إلى `~/.bashrc`
-2. **تثبيت Android Studio وAndroid SDK**: حمّل ملف `.tar.gz` من الموقع الرسمي ثم اضبط `ANDROID_HOME`
-3. **إنشاء أول مشروع**: باستخدام Expo (الأنسب للمبتدئين) أو React Native CLI
-4. **تشغيل التطبيق**: امسح رمز QR بتطبيق Expo Go أو استخدم محاكي Android
+## Contributing
 
-### البدء السريع
+1. Fork the repository
+2. Create a branch: `git checkout -b feature/my-feature`
+3. Commit your changes: `git commit -m "Add my feature"`
+4. Push the branch: `git push origin feature/my-feature`
+5. Open a Pull Request
 
-الأوامر نفسها المذكورة في قسم **Quick start** أعلاه (الأوامر تبقى بالإنجليزية). يمكنك أيضًا نسخها من ملف `code`.
+## License
 
-### نصائح
-
-- استخدم **هاتفًا حقيقيًا** بدل المحاكي لأداء أسرع بكثير على الأجهزة الضعيفة.
-- بناء تطبيقات iOS يتطلب **macOS وXcode**، وهما غير مدعومين على Linux.
-- استخدم **Expo** للمبتدئين، فهو أسهل في الإعداد ولا يحتاج Android Studio كاملًا للتجربة.
-- يتيح **EAS Build** بناء تطبيقات Android/iOS سحابيًا دون الحاجة لجهاز Mac.
-
-### المساهمة
-
-من إعداد [ESAM64bit](https://github.com/ESAM64bit)
-
+This project is licensed under the [MIT License](LICENSE).
